@@ -11,36 +11,36 @@ export function Team() {
       name: "Tomáš Boniatti",
       bio: t('team.tomas.bio'),
       initials: "TB",
-      color: 'indigo',
+      color: 'navy',
     },
     {
       name: "Myron Mahurskyj",
       bio: t('team.myron.bio'),
       initials: "MM",
-      color: 'purple',
+      color: 'blue',
     },
   ];
 
   const colorClasses = {
-    indigo: {
-      gradient: 'from-indigo-500/30 via-indigo-500/10 to-transparent',
-      border: 'group-hover:border-indigo-500/40',
-      glow: 'bg-indigo-500/20',
-      text: 'group-hover:text-indigo-300',
+    navy: {
+      gradient: 'from-blue-800/30 via-blue-800/10 to-transparent',
+      border: 'group-hover:border-blue-700/40',
+      glow: 'bg-blue-800/20',
+      text: 'group-hover:text-blue-300',
     },
-    purple: {
-      gradient: 'from-purple-500/30 via-purple-500/10 to-transparent',
-      border: 'group-hover:border-purple-500/40',
-      glow: 'bg-purple-500/20',
-      text: 'group-hover:text-purple-300',
+    blue: {
+      gradient: 'from-blue-500/30 via-blue-500/10 to-transparent',
+      border: 'group-hover:border-blue-500/40',
+      glow: 'bg-blue-500/20',
+      text: 'group-hover:text-sky-300',
     },
   };
 
   return (
-    <section id="team" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-purple-950/20 via-indigo-950/10 to-black">
+    <section id="team" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-blue-950/30 via-black to-blue-950/30">
       {/* Background gradient orbs */}
       <div className="section-orb section-orb-indigo w-[350px] h-[350px]" style={{ top: '20%', left: '-10%' }} />
-      <div className="section-orb section-orb-purple w-[300px] h-[300px]" style={{ bottom: '15%', right: '-8%' }} />
+      <div className="section-orb section-orb-blue w-[300px] h-[300px]" style={{ bottom: '15%', right: '-8%' }} />
 
       {/* Section divider */}
       <div className="absolute top-0 left-0 w-full h-px section-divider" />

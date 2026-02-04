@@ -12,25 +12,21 @@ export function Products() {
       icon: User,
       title: t('products.uniforms'),
       description: t('products.uniforms.desc'),
-      iconHover: 'group-hover:text-blue-400 group-hover:bg-blue-500/20 group-hover:border-blue-500/40',
     },
     {
       icon: Shield,
       title: t('products.tactical'),
       description: t('products.tactical.desc'),
-      iconHover: 'group-hover:text-emerald-400 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/40',
     },
     {
       icon: Layers,
       title: t('products.fabrics'),
       description: t('products.fabrics.desc'),
-      iconHover: 'group-hover:text-amber-400 group-hover:bg-amber-500/20 group-hover:border-amber-500/40',
     },
     {
       icon: Package,
       title: t('products.cbrn'),
       description: t('products.cbrn.desc'),
-      iconHover: 'group-hover:text-red-400 group-hover:bg-red-500/20 group-hover:border-red-500/40',
     },
   ];
 
@@ -71,15 +67,15 @@ export function Products() {
               <div className="relative">
                 <div className="flex items-start gap-6">
                   <div className="shrink-0">
-                    <div className={`icon-glow w-14 h-14 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center transition-all duration-500 ${product.iconHover}`}>
-                      <product.icon className="w-6 h-6 text-white/60 transition-colors duration-500" />
+                    <div className="icon-glow w-14 h-14 rounded-xl flex items-center justify-center">
+                      <product.icon className="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-400" />
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-3 tracking-wide">
                       {product.title}
                     </h3>
-                    <p className="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-500">
+                    <p className="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-400">
                       {product.description}
                     </p>
                   </div>

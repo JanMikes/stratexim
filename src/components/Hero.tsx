@@ -28,13 +28,13 @@ export function Hero() {
       <div className="accent-orb accent-orb-3" />
 
       {/* Subtle grid pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 grid-pattern opacity-50 pointer-events-none" />
 
       {/* Central radial glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] rounded-full blur-3xl pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.04) 40%, transparent 70%)'
+          background: 'radial-gradient(ellipse at center, rgba(30, 58, 138, 0.08) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 70%)'
         }}
       />
 
@@ -65,7 +65,7 @@ export function Hero() {
           onClick={(e) => handleNavClick(e, 'contact')}
           className="group relative inline-block px-10 py-4 bg-transparent overflow-hidden transition-all duration-500 gradient-border-animated rounded-full"
         >
-          <span className="absolute inset-0 bg-gradient-to-r from-indigo-500/80 via-purple-500/80 to-blue-500/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full" />
+          <span className="absolute inset-0 bg-gradient-to-r from-blue-800/80 via-blue-600/80 to-sky-500/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full" />
           <span className="relative text-sm tracking-[0.25em] group-hover:text-white transition-colors duration-500">
             {t('hero.cta')}
           </span>
@@ -75,11 +75,11 @@ export function Hero() {
       <a
         href="#about"
         onClick={(e) => handleNavClick(e, 'about')}
-        className="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/40 hover:text-indigo-400 transition-all duration-500 animate-float group"
+        className="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/40 hover:text-blue-400 transition-all duration-500 animate-float group"
         aria-label="Scroll to About section"
       >
         <div className="relative">
-          <div className="absolute inset-0 bg-indigo-500/20 rounded-full blur-xl scale-0 group-hover:scale-150 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-blue-600/20 rounded-full blur-xl scale-0 group-hover:scale-150 transition-transform duration-500" />
           <ChevronDown className="w-8 h-8 relative" aria-hidden="true" />
         </div>
       </a>

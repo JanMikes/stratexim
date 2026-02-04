@@ -10,7 +10,7 @@ export function Contact() {
     <section id="contact" className="py-32 px-6 relative overflow-hidden bg-black">
       {/* Background gradient orbs */}
       <div className="section-orb section-orb-indigo w-[400px] h-[400px]" style={{ bottom: '10%', left: '10%' }} />
-      <div className="section-orb section-orb-purple w-[350px] h-[350px]" style={{ top: '20%', right: '5%' }} />
+      <div className="section-orb section-orb-blue w-[350px] h-[350px]" style={{ top: '20%', right: '5%' }} />
 
       {/* Section divider */}
       <div className="absolute top-0 left-0 w-full h-px section-divider" />
@@ -19,7 +19,7 @@ export function Contact() {
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-3xl"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.04) 50%, transparent 70%)'
+          background: 'radial-gradient(ellipse at center, rgba(30, 58, 138, 0.08) 0%, rgba(37, 99, 235, 0.04) 50%, transparent 70%)'
         }}
       />
 
@@ -43,15 +43,15 @@ export function Contact() {
           className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-full overflow-hidden transition-all duration-500"
         >
           {/* Animated gradient border */}
-          <span className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-blue-500/50 opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+          <span className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-blue-800/50 via-blue-600/50 to-sky-500/50 opacity-50 group-hover:opacity-100 transition-opacity duration-500">
             <span className="absolute inset-[1px] rounded-full bg-black" />
           </span>
 
           {/* Hover fill */}
-          <span className="absolute inset-[1px] rounded-full bg-gradient-to-r from-indigo-500/80 via-purple-500/80 to-blue-500/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+          <span className="absolute inset-[1px] rounded-full bg-gradient-to-r from-blue-800/80 via-blue-600/80 to-sky-500/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
           {/* Glow effect */}
-          <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-blue-500/30" />
+          <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r from-blue-800/30 via-blue-600/30 to-sky-500/30" />
 
           {/* Content */}
           <Mail className="w-5 h-5 text-white/70 group-hover:text-white transition-colors duration-300 relative z-10" />

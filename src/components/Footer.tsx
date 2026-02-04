@@ -34,9 +34,9 @@ export function Footer() {
 
           {/* Decorative gradient dots */}
           <div className="hidden md:flex items-center gap-2" aria-hidden="true">
-            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500/40 to-purple-500/40" />
-            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500/30 to-blue-500/30" />
-            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500/20 to-indigo-500/20" />
+            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-800/40 to-blue-600/40" />
+            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600/30 to-sky-500/30" />
+            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-sky-500/20 to-blue-700/20" />
           </div>
         </div>
       </div>

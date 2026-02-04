@@ -12,45 +12,25 @@ export function About() {
       icon: Target,
       title: t('about.precision'),
       description: t('about.precision.desc'),
-      color: 'indigo',
     },
     {
       icon: Shield,
       title: t('about.durability'),
       description: t('about.durability.desc'),
-      color: 'purple',
     },
     {
       icon: Layers,
       title: t('about.innovation'),
       description: t('about.innovation.desc'),
-      color: 'blue',
     },
   ];
 
-  const colorClasses = {
-    indigo: {
-      iconBg: 'group-hover:bg-indigo-500/20',
-      iconBorder: 'group-hover:border-indigo-500/40',
-      iconColor: 'group-hover:text-indigo-400',
-    },
-    purple: {
-      iconBg: 'group-hover:bg-purple-500/20',
-      iconBorder: 'group-hover:border-purple-500/40',
-      iconColor: 'group-hover:text-purple-400',
-    },
-    blue: {
-      iconBg: 'group-hover:bg-blue-500/20',
-      iconBorder: 'group-hover:border-blue-500/40',
-      iconColor: 'group-hover:text-blue-400',
-    },
-  };
 
   return (
-    <section id="about" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-indigo-950/20 via-purple-950/10 to-black">
+    <section id="about" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-blue-950/30 via-black to-blue-950/30">
       {/* Background gradient orbs */}
       <div className="section-orb section-orb-indigo w-[400px] h-[400px]" style={{ top: '10%', left: '-10%' }} />
-      <div className="section-orb section-orb-purple w-[300px] h-[300px]" style={{ bottom: '20%', right: '-5%' }} />
+      <div className="section-orb section-orb-blue w-[300px] h-[300px]" style={{ bottom: '20%', right: '-5%' }} />
 
       {/* Section divider */}
       <div className="absolute top-0 left-0 w-full h-px section-divider" />
@@ -76,20 +56,19 @@ export function About() {
           className={`grid md:grid-cols-3 gap-8 lg:gap-12 scroll-reveal-stagger ${cardsRevealed ? 'revealed' : ''}`}
         >
           {pillars.map((pillar, index) => {
-            const colors = colorClasses[pillar.color as keyof typeof colorClasses];
             return (
               <div
                 key={index}
                 className="group relative p-8 rounded-2xl card-gradient-border"
               >
                 <div className="relative">
-                  <div className={`icon-glow w-16 h-16 mb-8 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center ${colors.iconBg} ${colors.iconBorder} transition-all duration-500`}>
-                    <pillar.icon className={`w-7 h-7 text-white/60 ${colors.iconColor} transition-colors duration-500`} />
+                  <div className="icon-glow w-16 h-16 mb-8 rounded-xl flex items-center justify-center">
+                    <pillar.icon className="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-400" />
                   </div>
                   <h3 className="text-xl font-semibold mb-4 tracking-wide">
                     {pillar.title}
                   </h3>
-                  <p className="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-500">
+                  <p className="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-400">
                     {pillar.description}
                   </p>
                 </div>

@@ -69,7 +69,7 @@ export function Header() {
             onClick={() => setLanguage('en')}
             className={`transition-all duration-300 px-3 py-1.5 rounded-md ${
               language === 'en'
-                ? 'text-white bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30'
+                ? 'text-white bg-gradient-to-r from-blue-800/20 to-blue-600/20 border border-blue-700/30'
                 : 'text-white/40 hover:text-white/70'
             }`}
             aria-label="Switch to English"
@@ -83,7 +83,7 @@ export function Header() {
             onClick={() => setLanguage('cz')}
             className={`transition-all duration-300 px-3 py-1.5 rounded-md ${
               language === 'cz'
-                ? 'text-white bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30'
+                ? 'text-white bg-gradient-to-r from-blue-800/20 to-blue-600/20 border border-blue-700/30'
                 : 'text-white/40 hover:text-white/70'
             }`}
             aria-label="Přepnout na češtinu"
