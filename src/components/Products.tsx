@@ -12,42 +12,30 @@ export function Products() {
       icon: User,
       title: t('products.uniforms'),
       description: t('products.uniforms.desc'),
-      color: 'blue',
-      gradient: 'from-blue-500/20 via-blue-500/5 to-transparent',
       iconHover: 'group-hover:text-blue-400 group-hover:bg-blue-500/20 group-hover:border-blue-500/40',
-      glow: 'bg-blue-500/30',
     },
     {
       icon: Shield,
       title: t('products.tactical'),
       description: t('products.tactical.desc'),
-      color: 'emerald',
-      gradient: 'from-emerald-500/20 via-emerald-500/5 to-transparent',
       iconHover: 'group-hover:text-emerald-400 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/40',
-      glow: 'bg-emerald-500/30',
     },
     {
       icon: Layers,
       title: t('products.fabrics'),
       description: t('products.fabrics.desc'),
-      color: 'amber',
-      gradient: 'from-amber-500/20 via-amber-500/5 to-transparent',
       iconHover: 'group-hover:text-amber-400 group-hover:bg-amber-500/20 group-hover:border-amber-500/40',
-      glow: 'bg-amber-500/30',
     },
     {
       icon: Package,
       title: t('products.cbrn'),
       description: t('products.cbrn.desc'),
-      color: 'red',
-      gradient: 'from-red-500/20 via-red-500/5 to-transparent',
       iconHover: 'group-hover:text-red-400 group-hover:bg-red-500/20 group-hover:border-red-500/40',
-      glow: 'bg-red-500/30',
     },
   ];
 
   return (
-    <section id="products" className="py-32 px-6 relative overflow-hidden">
+    <section id="products" className="py-32 px-6 relative overflow-hidden bg-black">
       {/* Background gradient orbs */}
       <div className="section-orb section-orb-blue w-[350px] h-[350px]" style={{ top: '5%', right: '-8%' }} />
       <div className="section-orb section-orb-emerald w-[300px] h-[300px]" style={{ bottom: '10%', left: '-5%' }} />
@@ -78,24 +66,17 @@ export function Products() {
           {products.map((product, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-2xl"
+              className="group relative p-8 lg:p-10 rounded-2xl card-gradient-border"
             >
-              {/* Animated background gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-
-              {/* Glow effect */}
-              <div className={`absolute -top-20 -right-20 w-40 h-40 ${product.glow} rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity duration-700`} />
-
-              {/* Card content */}
-              <div className="relative p-8 lg:p-10 bg-white/[0.02] border border-white/[0.05] rounded-2xl group-hover:border-white/[0.15] group-hover:bg-white/[0.04] transition-all duration-500">
+              <div className="relative">
                 <div className="flex items-start gap-6">
                   <div className="shrink-0">
-                    <div className={`icon-glow w-14 h-14 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center group-hover:scale-110 transition-all duration-500 ${product.iconHover}`}>
+                    <div className={`icon-glow w-14 h-14 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center transition-all duration-500 ${product.iconHover}`}>
                       <product.icon className="w-6 h-6 text-white/60 transition-colors duration-500" />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-3 tracking-wide group-hover:text-white transition-colors duration-300">
+                    <h3 className="text-xl font-semibold mb-3 tracking-wide">
                       {product.title}
                     </h3>
                     <p className="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-500">
@@ -103,9 +84,6 @@ export function Products() {
                     </p>
                   </div>
                 </div>
-
-                {/* Decorative corner gradient */}
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${product.gradient} rounded-bl-[4rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
               </div>
             </div>
           ))}

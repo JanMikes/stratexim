@@ -33,24 +33,21 @@ export function About() {
       iconBg: 'group-hover:bg-indigo-500/20',
       iconBorder: 'group-hover:border-indigo-500/40',
       iconColor: 'group-hover:text-indigo-400',
-      glow: 'bg-indigo-500/20',
     },
     purple: {
       iconBg: 'group-hover:bg-purple-500/20',
       iconBorder: 'group-hover:border-purple-500/40',
       iconColor: 'group-hover:text-purple-400',
-      glow: 'bg-purple-500/20',
     },
     blue: {
       iconBg: 'group-hover:bg-blue-500/20',
       iconBorder: 'group-hover:border-blue-500/40',
       iconColor: 'group-hover:text-blue-400',
-      glow: 'bg-blue-500/20',
     },
   };
 
   return (
-    <section id="about" className="py-32 px-6 relative overflow-hidden">
+    <section id="about" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-indigo-950/20 via-purple-950/10 to-black">
       {/* Background gradient orbs */}
       <div className="section-orb section-orb-indigo w-[400px] h-[400px]" style={{ top: '10%', left: '-10%' }} />
       <div className="section-orb section-orb-purple w-[300px] h-[300px]" style={{ bottom: '20%', right: '-5%' }} />
@@ -85,10 +82,7 @@ export function About() {
                 key={index}
                 className="group relative p-8 rounded-2xl card-gradient-border"
               >
-                {/* Hover glow effect */}
-                <div className={`absolute inset-0 rounded-2xl ${colors.glow} opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700`} />
-
-                <div className="relative z-10">
+                <div className="relative">
                   <div className={`icon-glow w-16 h-16 mb-8 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center ${colors.iconBg} ${colors.iconBorder} transition-all duration-500`}>
                     <pillar.icon className={`w-7 h-7 text-white/60 ${colors.iconColor} transition-colors duration-500`} />
                   </div>

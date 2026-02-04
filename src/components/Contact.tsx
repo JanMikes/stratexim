@@ -7,7 +7,7 @@ export function Contact() {
   const { ref: contentRef, isRevealed: contentRevealed } = useScrollReveal();
 
   return (
-    <section id="contact" className="py-32 px-6 relative overflow-hidden">
+    <section id="contact" className="py-32 px-6 relative overflow-hidden bg-black">
       {/* Background gradient orbs */}
       <div className="section-orb section-orb-indigo w-[400px] h-[400px]" style={{ bottom: '10%', left: '10%' }} />
       <div className="section-orb section-orb-purple w-[350px] h-[350px]" style={{ top: '20%', right: '5%' }} />

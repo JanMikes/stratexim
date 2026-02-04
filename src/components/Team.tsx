@@ -37,7 +37,7 @@ export function Team() {
   };
 
   return (
-    <section id="team" className="py-32 px-6 relative overflow-hidden">
+    <section id="team" className="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-purple-950/20 via-indigo-950/10 to-black">
       {/* Background gradient orbs */}
       <div className="section-orb section-orb-indigo w-[350px] h-[350px]" style={{ top: '20%', left: '-10%' }} />
       <div className="section-orb section-orb-purple w-[300px] h-[300px]" style={{ bottom: '15%', right: '-8%' }} />

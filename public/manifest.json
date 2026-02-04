@@ -1,0 +1,35 @@
+{
+  "name": "Stratexim - Strategic Textile Manufacturing",
+  "short_name": "Stratexim",
+  "description": "Premium tactical textiles for military and police. Uniforms, tactical gear, protective fabrics, and CBRN suits.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#111827",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "industrial"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

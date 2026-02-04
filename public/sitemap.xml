@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Main page - English (default) -->
+  <url>
+    <loc>https://stratexim.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stratexim.com/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://stratexim.com/?lang=cs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stratexim.com/" />
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Hero section -->
+  <url>
+    <loc>https://stratexim.com/#hero</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- About section -->
+  <url>
+    <loc>https://stratexim.com/#about</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Products section -->
+  <url>
+    <loc>https://stratexim.com/#products</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Team section -->
+  <url>
+    <loc>https://stratexim.com/#team</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact section -->
+  <url>
+    <loc>https://stratexim.com/#contact</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

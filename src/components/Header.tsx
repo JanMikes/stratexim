@@ -13,9 +13,11 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', `#${id}`);
   };
 
   return (
@@ -25,36 +27,44 @@ export function Header() {
           ? 'bg-black/90 backdrop-blur-xl'
           : 'bg-transparent'
       }`}
+      role="banner"
     >
       {/* Gradient border line when scrolled */}
       <div className={`absolute bottom-0 left-0 w-full h-px section-divider transition-opacity duration-500 ${scrolled ? 'opacity-100' : 'opacity-0'}`} />
 
       <div className="container mx-auto px-6 py-5 flex items-center justify-between">
-        <div
-          className="text-base font-medium tracking-[0.35em] cursor-pointer hero-gradient-text hover:opacity-80 transition-opacity"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        <a
+          href="#hero"
+          className="text-base font-medium tracking-[0.35em] hero-gradient-text hover:opacity-80 transition-opacity"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.history.pushState(null, '', '/');
+          }}
+          aria-label="Stratexim - Back to top"
         >
           STRATEXIM
-        </div>
+        </a>
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-10" role="navigation" aria-label="Main navigation">
           {[
             { id: 'about', label: t('nav.about') },
             { id: 'products', label: t('nav.products') },
             { id: 'team', label: t('nav.team') },
             { id: 'contact', label: t('nav.contact') },
           ].map((item) => (
-            <button
+            <a
               key={item.id}
-              onClick={() => scrollTo(item.id)}
+              href={`#${item.id}`}
+              onClick={(e) => handleNavClick(e, item.id)}
               className="text-sm text-white/50 hover:text-white transition-colors duration-300 tracking-wider animated-underline"
             >
               {item.label}
-            </button>
+            </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3 text-sm">
+        <div className="flex items-center gap-3 text-sm" role="group" aria-label="Language selection">
           <button
             onClick={() => setLanguage('en')}
             className={`transition-all duration-300 px-3 py-1.5 rounded-md ${
@@ -62,10 +72,13 @@ export function Header() {
                 ? 'text-white bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30'
                 : 'text-white/40 hover:text-white/70'
             }`}
+            aria-label="Switch to English"
+            aria-pressed={language === 'en'}
+            lang="en"
           >
             EN
           </button>
-          <span className="text-white/20">/</span>
+          <span className="text-white/20" aria-hidden="true">/</span>
           <button
             onClick={() => setLanguage('cz')}
             className={`transition-all duration-300 px-3 py-1.5 rounded-md ${
@@ -73,6 +86,9 @@ export function Header() {
                 ? 'text-white bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30'
                 : 'text-white/40 hover:text-white/70'
             }`}
+            aria-label="Přepnout na češtinu"
+            aria-pressed={language === 'cz'}
+            lang="cs"
           >
             CZ
           </button>
