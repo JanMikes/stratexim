@@ -7,8 +7,8 @@ const t = {
 };
 
 const team = [
-  { name: 'Tomáš Boniatti', bio: t.tomasBio, initials: 'TB', color: 'navy' },
-  { name: 'Myron Mahurskyj', bio: t.myronBio, initials: 'MM', color: 'blue' },
+  { name: 'Tomáš Boniatti', bio: t.tomasBio, photo: '/team/tomas.webp', color: 'navy' },
+  { name: 'Myron Mahurskyj', bio: t.myronBio, photo: '/team/myron.webp', color: 'blue' },
 ];
 
 const colorClasses = {
@@ -69,10 +69,18 @@ const colorClasses = {
               <div class={`absolute inset-0 rounded-full bg-gradient-to-b ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
               <!-- Main avatar -->
-              <div class={`relative w-full h-full rounded-full bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/[0.1] ${colors.border} flex items-center justify-center transition-all duration-500 group-hover:scale-105`}>
-                <span class={`text-3xl font-light text-white/50 tracking-widest ${colors.text} transition-colors duration-500`}>
-                  {member.initials}
-                </span>
+              <div class={`relative w-full h-full rounded-full border border-white/[0.1] ${colors.border} overflow-hidden transition-all duration-500 group-hover:scale-105`}>
+                <picture>
+                  <source srcset={member.photo} type="image/webp" />
+                  <img
+                    src={member.photo.replace('.webp', '.png')}
+                    alt={member.name}
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                  />
+                </picture>
               </div>
             </div>
 

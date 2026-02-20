@@ -9,6 +9,13 @@ html:not([data-lang]) .lang-cz {
 
 /* Self-hosted fonts for better initial load performance */
 @font-face {
+  font-family: 'Sol Pro Cond';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/sol-pro-cond-black-italic.woff2') format('woff2');
+}
+@font-face {
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 300;
