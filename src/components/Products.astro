@@ -19,7 +19,7 @@ const products = [
 ];
 ---
 
-<section id="products" class="py-32 px-6 relative overflow-hidden bg-black">
+<section id="products" class="py-32 px-6 relative overflow-clip bg-black">
   <!-- Background gradient orbs -->
   <div class="section-orb section-orb-blue w-[350px] h-[350px]" style="top: 5%; right: -8%;"></div>
   <div class="section-orb section-orb-emerald w-[300px] h-[300px]" style="bottom: 10%; left: -5%;"></div>
@@ -49,25 +49,25 @@ const products = [
               <div class="shrink-0">
                 <div class="icon-glow w-14 h-14 rounded-xl flex items-center justify-center">
                   {product.icon === 'user' && (
-                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                   )}
                   {product.icon === 'shield' && (
-                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
                   )}
                   {product.icon === 'layers' && (
-                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                       <polyline points="2 17 12 22 22 17"></polyline>
                       <polyline points="2 12 12 17 22 12"></polyline>
                     </svg>
                   )}
                   {product.icon === 'package' && (
-                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="w-6 h-6 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
                       <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                       <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
@@ -81,7 +81,7 @@ const products = [
                   <span class="lang-en">{product.title.en}</span>
                   <span class="lang-cz">{product.title.cz}</span>
                 </h3>
-                <p class="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-400">
+                <p class="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-200">
                   <span class="lang-en">{product.desc.en}</span>
                   <span class="lang-cz">{product.desc.cz}</span>
                 </p>

@@ -17,7 +17,7 @@ const pillars = [
 ];
 ---
 
-<section id="about" class="py-32 px-6 relative overflow-hidden bg-gradient-to-b from-blue-950/30 via-black to-blue-950/30">
+<section id="about" class="py-32 px-6 relative overflow-clip bg-gradient-to-b from-blue-950/30 via-black to-blue-950/30">
   <!-- Background gradient orbs -->
   <div class="section-orb section-orb-indigo w-[400px] h-[400px]" style="top: 10%; left: -10%;"></div>
   <div class="section-orb section-orb-blue w-[300px] h-[300px]" style="bottom: 20%; right: -5%;"></div>
@@ -46,19 +46,19 @@ const pillars = [
           <div class="relative">
             <div class="icon-glow w-16 h-16 mb-8 rounded-xl flex items-center justify-center">
               {pillar.icon === 'target' && (
-                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
                   <circle cx="12" cy="12" r="6"></circle>
                   <circle cx="12" cy="12" r="2"></circle>
                 </svg>
               )}
               {pillar.icon === 'shield' && (
-                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
               )}
               {pillar.icon === 'layers' && (
-                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                   <polyline points="2 17 12 22 22 17"></polyline>
                   <polyline points="2 12 12 17 22 12"></polyline>
@@ -69,7 +69,7 @@ const pillars = [
               <span class="lang-en">{pillar.title.en}</span>
               <span class="lang-cz">{pillar.title.cz}</span>
             </h3>
-            <p class="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-400">
+            <p class="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-200">
               <span class="lang-en">{pillar.desc.en}</span>
               <span class="lang-cz">{pillar.desc.cz}</span>
             </p>
