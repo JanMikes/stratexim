@@ -9,6 +9,9 @@ const { title, description, lang = 'en' } = Astro.props;
 const currentYear = new Date().getFullYear();
 const isCz = lang === 'cz';
 const canonicalUrl = isCz ? 'https://stratexim.com/cz' : 'https://stratexim.com/';
+
+const keywordsEn = 'military textiles, tactical gear, police uniforms, CBRN suits, protective fabrics, ballistic textiles, Czech Republic, tactical uniforms, defense textiles, military clothing manufacturer, protective vest manufacturer, flame resistant fabrics, tactical equipment Europe';
+const keywordsCz = 'vojenské textilie, taktické vybavení, policejní uniformy, CBRN obleky, ochranné tkaniny, balistické textilie, Česká republika, taktické uniformy, obranné textilie, výrobce vojenského oblečení, výrobce ochranných vest, nehořlavé materiály, taktické vybavení Evropa';
 ---
 
 <!doctype html>
@@ -17,14 +20,24 @@ const canonicalUrl = isCz ? 'https://stratexim.com/cz' : 'https://stratexim.com/
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- DNS Prefetch & Preconnect for third-party domains -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://app.cal.com" />
+    <link rel="preconnect" href="https://app.cal.com" crossorigin />
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content="Stratexim s.r.o." />
-    <meta name="keywords" content="military textiles, tactical gear, police uniforms, CBRN suits, protective fabrics, ballistic textiles, Czech Republic, tactical uniforms, defense textiles" />
+    <meta name="keywords" content={isCz ? keywordsCz : keywordsEn} />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="CZ" />
+    <meta name="geo.placename" content="Czech Republic" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
@@ -42,6 +55,7 @@ const canonicalUrl = isCz ? 'https://stratexim.com/cz' : 'https://stratexim.com/
     <meta property="og:image" content="https://stratexim.com/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Stratexim - Strategic Textile Manufacturing" />
     <meta property="og:locale" content={isCz ? 'cs_CZ' : 'en_US'} />
     <meta property="og:locale:alternate" content={isCz ? 'en_US' : 'cs_CZ'} />
     <meta property="og:site_name" content="Stratexim" />
@@ -52,6 +66,7 @@ const canonicalUrl = isCz ? 'https://stratexim.com/cz' : 'https://stratexim.com/
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://stratexim.com/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Stratexim - Strategic Textile Manufacturing" />
 
     <!-- Theme & Icons -->
     <meta name="theme-color" content="#111827" />
@@ -76,24 +91,143 @@ const canonicalUrl = isCz ? 'https://stratexim.com/cz' : 'https://stratexim.com/
       gtag('config', 'G-5234ELT1T2');
     </script>
 
-    <!-- Structured Data -->
+    <!-- Structured Data: Organization -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Stratexim s.r.o.",
       "url": "https://stratexim.com",
       "logo": "https://stratexim.com/favicon.svg",
-      "description": description,
+      "description": isCz
+        ? "Prémiové taktické textilie pro armádu a policii. Uniformy, taktické vybavení, ochranné tkaniny a CBRN obleky vyráběné v České republice."
+        : "Premium tactical textiles for military and police. Uniforms, tactical gear, protective fabrics, and CBRN suits manufactured in Czech Republic.",
+      "email": "info@stratexim.com",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "CZ"
       },
-      "sameAs": [],
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Tomáš Boniatti",
+          "jobTitle": isCz ? "Spoluzakladatel" : "Co-Founder",
+          "image": "https://stratexim.com/team/tomas.webp",
+          "description": isCz
+            ? "Expert na výrobu taktických textilií s rozsáhlými zkušenostmi ve vojenských výrobních procesech."
+            : "Expert in tactical textile production with extensive experience in military-grade manufacturing processes."
+        },
+        {
+          "@type": "Person",
+          "name": "Myron Mahurskyj",
+          "jobTitle": isCz ? "Spoluzakladatel" : "Co-Founder",
+          "image": "https://stratexim.com/team/myron.webp",
+          "description": isCz
+            ? "Specialista na technologie ochranných tkanin a zajištění kvality pro obranné aplikace."
+            : "Specialist in protective fabric technologies and quality assurance for defense applications."
+        }
+      ],
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "sales",
+        "email": "info@stratexim.com",
         "availableLanguage": ["English", "Czech"]
       }
+    })} />
+
+    <!-- Structured Data: WebSite (enables sitelinks search box) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Stratexim",
+      "url": "https://stratexim.com",
+      "inLanguage": isCz ? "cs" : "en",
+      "description": description
+    })} />
+
+    <!-- Structured Data: WebPage -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": title,
+      "description": description,
+      "url": canonicalUrl,
+      "inLanguage": isCz ? "cs" : "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Stratexim",
+        "url": "https://stratexim.com"
+      },
+      "about": {
+        "@type": "Organization",
+        "name": "Stratexim s.r.o."
+      }
+    })} />
+
+    <!-- Structured Data: Products (ItemList) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": isCz ? "Produkty Stratexim" : "Stratexim Products",
+      "description": isCz ? "Taktické textilní produkty vyráběné v České republice" : "Tactical textile products manufactured in Czech Republic",
+      "numberOfItems": 4,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "name": isCz ? "Uniformy a oblečení" : "Uniforms & Clothing",
+            "description": isCz
+              ? "Taktické uniformy, bojové oblečení a ochranné oděvy navržené pro operační excelenci."
+              : "Tactical uniforms, combat clothing and protective garments designed for operational excellence.",
+            "brand": { "@type": "Brand", "name": "Stratexim" },
+            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
+            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "name": isCz ? "Taktické vybavení" : "Tactical Gear",
+            "description": isCz
+              ? "Vesty, nosiče a vybavení navržené pro maximální ochranu a mobilitu."
+              : "Vests, carriers and equipment engineered for maximum protection and mobility.",
+            "brand": { "@type": "Brand", "name": "Stratexim" },
+            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
+            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Product",
+            "name": isCz ? "Ochranné tkaniny" : "Protective Fabrics",
+            "description": isCz
+              ? "Balistické textilie, nehořlavé materiály a pokročilá ochranná řešení."
+              : "Ballistic textiles, flame-resistant materials and advanced protective solutions.",
+            "brand": { "@type": "Brand", "name": "Stratexim" },
+            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
+            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "Product",
+            "name": isCz ? "CBRN ochranné obleky" : "CBRN Protective Suits",
+            "description": isCz
+              ? "Specializované systémy ochrany proti chemickým, biologickým, radiologickým a nukleárním hrozbám."
+              : "Specialized chemical, biological, radiological, and nuclear protection systems.",
+            "brand": { "@type": "Brand", "name": "Stratexim" },
+            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
+            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
+          }
+        }
+      ]
     })} />
   </head>
   <body>
