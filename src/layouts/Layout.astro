@@ -2,14 +2,17 @@
 interface Props {
   title: string;
   description: string;
+  lang?: 'en' | 'cz';
 }
 
-const { title, description } = Astro.props;
+const { title, description, lang = 'en' } = Astro.props;
 const currentYear = new Date().getFullYear();
+const isCz = lang === 'cz';
+const canonicalUrl = isCz ? 'https://stratexim.com/cz' : 'https://stratexim.com/';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={isCz ? 'cs' : 'en'} data-lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,28 +27,28 @@ const currentYear = new Date().getFullYear();
     <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stratexim.com/" />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Alternate Languages -->
     <link rel="alternate" hreflang="en" href="https://stratexim.com/" />
-    <link rel="alternate" hreflang="cs" href="https://stratexim.com/?lang=cs" />
+    <link rel="alternate" hreflang="cs" href="https://stratexim.com/cz" />
     <link rel="alternate" hreflang="x-default" href="https://stratexim.com/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://stratexim.com/" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://stratexim.com/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="cs_CZ" />
+    <meta property="og:locale" content={isCz ? 'cs_CZ' : 'en_US'} />
+    <meta property="og:locale:alternate" content={isCz ? 'en_US' : 'cs_CZ'} />
     <meta property="og:site_name" content="Stratexim" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://stratexim.com/" />
+    <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://stratexim.com/og-image.jpg" />
@@ -99,20 +102,11 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <script>
-      // Language toggle
-      const initLanguage = () => {
-        const stored = localStorage.getItem('lang') || 'en';
-        document.documentElement.setAttribute('data-lang', stored);
-        updateActiveButton(stored);
-      };
+      // Language is determined by URL path: /cz = Czech, / = English
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+      const basePath = lang === 'cz' ? '/cz' : '/';
 
-      const setLanguage = (lang: string) => {
-        localStorage.setItem('lang', lang);
-        document.documentElement.setAttribute('data-lang', lang);
-        updateActiveButton(lang);
-      };
-
-      const updateActiveButton = (lang: string) => {
+      const updateActiveButton = () => {
         document.querySelectorAll('[data-lang-btn]').forEach(btn => {
           const isActive = btn.getAttribute('data-lang-btn') === lang;
           btn.classList.toggle('text-white', isActive);
@@ -134,23 +128,17 @@ const currentYear = new Date().getFullYear();
           const id = link.getAttribute('href')?.slice(1);
           if (id === 'hero' || id === '') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, '', '/');
+            history.pushState(null, '', basePath);
           } else {
             const el = document.getElementById(id!);
             el?.scrollIntoView({ behavior: 'smooth' });
-            history.pushState(null, '', `#${id}`);
+            history.pushState(null, '', `${basePath}#${id}`);
           }
-        }
-
-        // Language button click
-        const langBtn = target.closest('[data-lang-btn]');
-        if (langBtn) {
-          setLanguage(langBtn.getAttribute('data-lang-btn')!);
         }
       });
 
       // Initialize
-      initLanguage();
+      updateActiveButton();
     </script>
   </body>
 </html>
