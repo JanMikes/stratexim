@@ -64,6 +64,15 @@ const currentYear = new Date().getFullYear();
     <link rel="preload" href="/fonts/raleway-v37-latin-ext_latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/raleway-v37-latin-ext_latin-300.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5234ELT1T2"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5234ELT1T2');
+    </script>
+
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
