@@ -1,0 +1,155 @@
+---
+---
+
+<div id="top-banner" class="fixed top-0 left-0 right-0 z-[60]">
+  <div class="relative bg-gradient-to-r from-blue-950 via-blue-900/95 to-blue-950 border-b border-blue-700/20">
+    <!-- Subtle shimmer overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 py-2 flex items-center justify-center gap-3 sm:gap-5 text-sm relative">
+      <!-- Live dot -->
+      <span class="relative flex h-2 w-2 shrink-0">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-400"></span>
+      </span>
+
+      <div class="flex items-center gap-2 sm:gap-4 min-w-0">
+        <span class="truncate text-white/90 text-xs sm:text-sm tracking-wide">
+          <span class="lang-en">
+            <span class="font-semibold">MEET US IN NUREMBERG</span>
+            <span class="hidden sm:inline text-blue-300/60 ml-2">IWA Outdoor Classics · Mar 6–9</span>
+          </span>
+          <span class="lang-cz">
+            <span class="font-semibold">POTKEJTE NÁS V NORIMBERKU</span>
+            <span class="hidden sm:inline text-blue-300/60 ml-2">IWA Outdoor Classics · 6.–9. března</span>
+          </span>
+        </span>
+      </div>
+
+      <button
+        data-cal-namespace="meeting"
+        data-cal-link="tomas-boniatti-rsgowm/30min"
+        data-cal-config='{"layout":"month_view"}'
+        class="shrink-0 px-3 sm:px-4 py-1 text-[10px] sm:text-xs tracking-widest font-medium bg-white/10 hover:bg-white/20 border border-white/15 hover:border-white/30 rounded-full text-white transition-all duration-300 cursor-pointer"
+      >
+        <span class="lang-en">BOOK A MEETING</span>
+        <span class="lang-cz">DOMLUVIT SCHŮZKU</span>
+      </button>
+
+      <button
+        id="close-banner"
+        class="shrink-0 text-white/30 hover:text-white/70 transition-colors p-1 cursor-pointer"
+        aria-label="Close banner"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Cal.com embed loader -->
+<script is:inline>
+(function (C, A, L) {
+  var p = function (a, ar) { a.q.push(ar); };
+  var d = C.document;
+  C.Cal = C.Cal || function () {
+    var cal = C.Cal;
+    var ar = arguments;
+    if (!cal.loaded) {
+      cal.ns = {};
+      cal.q = cal.q || [];
+      d.head.appendChild(d.createElement("script")).src = A;
+      cal.loaded = true;
+    }
+    if (ar[0] === L) {
+      var api = function () { p(api, arguments); };
+      var namespace = ar[1];
+      api.q = api.q || [];
+      if (typeof namespace === "string") {
+        cal.ns[namespace] = cal.ns[namespace] || api;
+        p(cal.ns[namespace], ar);
+        p(cal, ["initNamespace", namespace]);
+      } else p(cal, ar);
+      return;
+    }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal("init", "meeting", { origin: "https://cal.com" });
+
+Cal.ns["meeting"]("preload", {
+  calLink: "tomas-boniatti-rsgowm/30min",
+});
+
+Cal.ns["meeting"]("ui", {
+  theme: "dark",
+  styles: { branding: { brandColor: "#1e3a8a" } },
+  hideEventTypeDetails: false,
+  layout: "month_view",
+});
+</script>
+
+<!-- Banner dismiss + header offset logic -->
+<script is:inline>
+(function() {
+  function init() {
+    var banner = document.getElementById('top-banner');
+    var header = document.getElementById('header');
+    var closeBtn = document.getElementById('close-banner');
+    if (!banner || !header || !closeBtn) return;
+
+    function show() {
+      banner.style.display = '';
+      banner.style.transform = '';
+      banner.style.opacity = '';
+      // Force layout recalc then set header offset
+      requestAnimationFrame(function() {
+        var h = banner.offsetHeight;
+        header.style.top = h + 'px';
+      });
+    }
+
+    function hide(animate) {
+      if (animate) {
+        banner.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        banner.style.transform = 'translateY(-100%)';
+        banner.style.opacity = '0';
+        header.style.top = '0';
+        setTimeout(function() { banner.style.display = 'none'; }, 300);
+      } else {
+        banner.style.display = 'none';
+        header.style.top = '0';
+      }
+    }
+
+    if (sessionStorage.getItem('iwa-banner-dismissed')) {
+      hide(false);
+    } else {
+      show();
+    }
+
+    // Re-measure on resize (banner height can change on mobile)
+    window.addEventListener('resize', function() {
+      if (!sessionStorage.getItem('iwa-banner-dismissed') && banner.style.display !== 'none') {
+        var h = banner.offsetHeight;
+        header.style.top = h + 'px';
+      }
+    });
+
+    closeBtn.addEventListener('click', function() {
+      sessionStorage.setItem('iwa-banner-dismissed', '1');
+      hide(true);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
