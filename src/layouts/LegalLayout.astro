@@ -1,6 +1,7 @@
 ---
 import type { Lang, Translation } from '../i18n/translations';
 import { HOME_PATH, LEGAL_PATH } from '../i18n/translations';
+import Analytics from '../components/Analytics.astro';
 
 interface Props {
   t: Translation;
@@ -23,6 +24,7 @@ const langLabels: Record<Lang, string> = { en: 'EN', cz: 'CZ', de: 'DE' };
     <meta name="theme-color" content="#111827" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Analytics />
   </head>
   <body>
     <header class="nav">

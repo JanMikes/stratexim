@@ -1,5 +1,6 @@
 ---
 import type { Lang, Translation } from '../i18n/translations';
+import Analytics from '../components/Analytics.astro';
 
 interface Props {
   t: Translation;
@@ -113,6 +114,9 @@ const faqLd = {
     <link rel="preload" href="/fonts/sol-pro-cond-black-italic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/raleway-v37-latin-ext_latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/raleway-v37-latin-ext_latin-300.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Analytics -->
+    <Analytics />
 
     <!-- Structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
