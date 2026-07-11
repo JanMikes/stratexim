@@ -5,21 +5,22 @@ import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Products from '../components/Products.astro';
 import Team from '../components/Team.astro';
+import Faq from '../components/Faq.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import { translations } from '../i18n/translations';
+
+const lang = 'en' as const;
+const t = translations[lang];
 ---
 
-<Layout
-  title="Stratexim | Strategic Textile Manufacturing"
-  description="Premium tactical textiles for military and police. Uniforms, tactical gear, protective fabrics, and CBRN suits manufactured in Czech Republic."
->
-  <Header />
-  <main>
-    <Hero />
-    <About />
-    <Products />
-    <Team />
-    <Contact />
-  </main>
-  <Footer />
+<Layout t={t} lang={lang}>
+  <Header t={t} lang={lang} />
+  <Hero t={t} />
+  <About t={t} />
+  <Products t={t} />
+  <Team t={t} />
+  <Faq t={t} />
+  <Contact t={t} lang={lang} />
+  <Footer t={t} lang={lang} />
 </Layout>

@@ -1,104 +1,35 @@
 ---
-const t = {
-  title: { en: 'Our Founders', cz: 'Naši zakladatelé' },
-  experience: { en: '7+ years in textile manufacturing', cz: '7+ let v textilní výrobě' },
-  tomasBio: { en: 'Expert in tactical textile production with extensive experience in military-grade manufacturing processes.', cz: 'Expert na výrobu taktických textilií s rozsáhlými zkušenostmi ve vojenských výrobních procesech.' },
-  myronBio: { en: 'Specialist in protective fabric technologies and quality assurance for defense applications.', cz: 'Specialista na technologie ochranných tkanin a zajištění kvality pro obranné aplikace.' },
-};
+import type { Translation } from '../i18n/translations';
 
-const team = [
-  { name: 'Tomáš Boniatti', role: { en: 'Co-Founder', cz: 'Spoluzakladatel' }, bio: t.tomasBio, photo: '/team/tomas.webp', color: 'navy' },
-  { name: 'Myron Mahurskyj', role: { en: 'Co-Founder', cz: 'Spoluzakladatel' }, bio: t.myronBio, photo: '/team/myron.webp', color: 'blue' },
+interface Props {
+  t: Translation;
+}
+
+const { t } = Astro.props;
+
+// Names, roles, photos and alt text are language-independent; bios come from t.
+const MEMBERS = [
+  { photo: 'tomas.jpg', name: 'Tomáš Boniatti', role: 'CEO', alt: 'Tomáš Boniatti - CEO, Stratexim s.r.o.' },
+  { photo: 'myron.jpg', name: 'Myron Mahurskyj', role: 'CTO', alt: 'Myron Mahurskyj - CTO, Stratexim s.r.o.' },
 ];
-
-const colorClasses = {
-  navy: {
-    gradient: 'from-blue-800/30 via-blue-800/10 to-transparent',
-    border: 'group-hover:border-blue-700/40',
-    glow: 'bg-blue-800/20',
-    text: 'group-hover:text-blue-300',
-  },
-  blue: {
-    gradient: 'from-blue-500/30 via-blue-500/10 to-transparent',
-    border: 'group-hover:border-blue-500/40',
-    glow: 'bg-blue-500/20',
-    text: 'group-hover:text-sky-300',
-  },
-};
 ---
 
-<section id="team" class="py-32 px-6 relative overflow-clip bg-gradient-to-b from-blue-950/30 via-black to-blue-950/30">
-  <!-- Background gradient orbs -->
-  <div class="section-orb section-orb-indigo w-[350px] h-[350px]" style="top: 20%; left: -10%;"></div>
-  <div class="section-orb section-orb-blue w-[300px] h-[300px]" style="bottom: 15%; right: -8%;"></div>
-
-  <!-- Section divider -->
-  <div class="absolute top-0 left-0 w-full h-px section-divider"></div>
-
-  <div class="container mx-auto max-w-4xl relative z-10">
-    <div>
-      <div class="text-center mb-6">
-        <p class="text-xs tracking-[0.4em] text-white/40 uppercase mb-4">
-          <span class="lang-en">Leadership</span>
-          <span class="lang-cz">Vedení</span>
-        </p>
-        <h2 class="text-3xl md:text-5xl font-light tracking-tight hero-gradient-text">
-          <span class="lang-en">{t.title.en}</span>
-          <span class="lang-cz">{t.title.cz}</span>
-        </h2>
-      </div>
-
-      <p class="text-white/40 text-center mb-16 text-sm tracking-wider flex items-center justify-center gap-3">
-        <span class="w-12 h-px gradient-line"></span>
-        <span class="lang-en">{t.experience.en}</span>
-        <span class="lang-cz">{t.experience.cz}</span>
-        <span class="w-12 h-px gradient-line"></span>
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
-      {team.map((member) => {
-        const colors = colorClasses[member.color as keyof typeof colorClasses];
-        return (
-          <div class="group text-center">
-            <!-- Avatar with enhanced glow effect -->
-            <div class="relative w-36 h-36 mx-auto mb-8">
-              <!-- Outer glow ring -->
-              <div class={`absolute inset-0 rounded-full ${colors.glow} blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 scale-125`}></div>
-
-              <!-- Gradient ring animation -->
-              <div class={`absolute inset-0 rounded-full bg-gradient-to-b ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-
-              <!-- Main avatar -->
-              <div class={`relative w-full h-full rounded-full border border-white/[0.1] ${colors.border} overflow-hidden transition-all duration-500 group-hover:scale-105`}>
-                <picture>
-                  <source srcset={member.photo} type="image/webp" />
-                  <img
-                    src={member.photo.replace('.webp', '.png')}
-                    alt={`${member.name} - ${member.role.en}, Stratexim s.r.o.`}
-                    width="400"
-                    height="400"
-                    loading="lazy"
-                    class="w-full h-full object-cover"
-                  />
-                </picture>
-              </div>
-            </div>
-
-            <h3 class="text-2xl font-semibold mb-2 tracking-wide group-hover:text-white transition-colors duration-300">
-              {member.name}
-            </h3>
-            <p class="text-xs tracking-[0.2em] text-white/40 uppercase mb-4">
-              <span class="lang-en">{member.role.en}</span>
-              <span class="lang-cz">{member.role.cz}</span>
-            </p>
-            <p class="text-white/50 leading-relaxed text-sm max-w-xs mx-auto group-hover:text-white/70 transition-colors duration-500">
-              <span class="lang-en">{member.bio.en}</span>
-              <span class="lang-cz">{member.bio.cz}</span>
-            </p>
+<section class="section" id="team">
+  <div class="container">
+    <p class="kicker reveal">{t.team.kicker}</p>
+    <h2 class="section-title gradient-text reveal">{t.team.title}</h2>
+    <p class="team-tagline reveal"><span class="line" aria-hidden="true"></span>{t.team.tagline}<span class="line" aria-hidden="true"></span></p>
+    <div class="team-grid reveal-group">
+      {MEMBERS.map((member, i) => (
+        <div class="member">
+          <div class="member-photo">
+            <img src={`/images/team/${member.photo}`} alt={member.alt} loading="lazy" />
           </div>
-        );
-      })}
+          <h3>{member.name}</h3>
+          <p class="member-role">{member.role}</p>
+          <p class="member-bio">{t.team.bios[i]}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>

@@ -1,42 +1,20 @@
 ---
-const t = {
-  rights: { en: 'All rights reserved.', cz: 'Všechna práva vyhrazena.' },
-  company: { en: 'STRATEXIM s.r.o.', cz: 'STRATEXIM s.r.o.' },
-};
+import type { Lang, Translation } from '../i18n/translations';
+import { LEGAL_PATH } from '../i18n/translations';
 
-const currentYear = new Date().getFullYear();
+interface Props {
+  t: Translation;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
 ---
 
-<footer class="py-12 px-6 relative overflow-clip" role="contentinfo">
-  <!-- Subtle gradient orb -->
-  <div class="section-orb section-orb-indigo w-[200px] h-[200px] opacity-20" style="bottom: -50%; left: 50%; transform: translateX(-50%);" aria-hidden="true"></div>
-
-  <!-- Top border with gradient -->
-  <div class="absolute top-0 left-0 w-full h-px section-divider" aria-hidden="true"></div>
-
-  <div class="container mx-auto max-w-6xl relative z-10">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <a
-        href="#hero"
-        class="text-sm tracking-[0.25em] font-medium hero-gradient-text hover:opacity-80 transition-opacity"
-        aria-label="Stratexim - Back to top"
-      >
-        STRATEXIM
-      </a>
-
-      <p class="text-white/40 text-sm text-center tracking-wide">
-        <span>&copy; {currentYear} {t.company.en}</span>
-        {' '}
-        <span class="lang-en">{t.rights.en}</span>
-        <span class="lang-cz">{t.rights.cz}</span>
-      </p>
-
-      <!-- Decorative gradient dots -->
-      <div class="hidden md:flex items-center gap-2" aria-hidden="true">
-        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-800/40 to-blue-600/40"></span>
-        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600/30 to-sky-500/30"></span>
-        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-sky-500/20 to-blue-700/20"></span>
-      </div>
-    </div>
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-logo">S T R A T E X I M</span>
+    <span class="footer-copy">© <span id="year">2026</span> STRATEXIM s.r.o. {t.footer.rights}</span>
+    <span class="footer-dots" aria-hidden="true"><i></i><i></i><i></i></span>
   </div>
+  <div class="footer-company">{t.footer.companyText} · <a class="footer-link" href={LEGAL_PATH[lang]}>{t.footer.privacyLabel}</a></div>
 </footer>

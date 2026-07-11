@@ -1,280 +1,210 @@
 ---
+import type { Lang, Translation } from '../i18n/translations';
+
 interface Props {
-  title: string;
-  description: string;
-  lang?: 'en' | 'cz';
+  t: Translation;
+  lang: Lang;
 }
 
-const { title, description, lang = 'en' } = Astro.props;
-const currentYear = new Date().getFullYear();
-const isCz = lang === 'cz';
-const canonicalUrl = isCz ? 'https://stratexim.com/cz' : 'https://stratexim.com/';
+const { t } = Astro.props;
 
-const keywordsEn = 'military textiles, tactical gear, police uniforms, CBRN suits, protective fabrics, ballistic textiles, Czech Republic, tactical uniforms, defense textiles, military clothing manufacturer, protective vest manufacturer, flame resistant fabrics, tactical equipment Europe';
-const keywordsCz = 'vojenské textilie, taktické vybavení, policejní uniformy, CBRN obleky, ochranné tkaniny, balistické textilie, Česká republika, taktické uniformy, obranné textilie, výrobce vojenského oblečení, výrobce ochranných vest, nehořlavé materiály, taktické vybavení Evropa';
+// --- Structured data (JSON-LD) --------------------------------------------
+// Language-independent company facts live here; the translatable bits come from t.
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Stratexim',
+  legalName: 'Bonimport Global s.r.o.',
+  vatID: 'CZ23035650',
+  identifier: { '@type': 'PropertyValue', propertyID: 'ICO', value: '23035650' },
+  url: 'https://stratexim.com/',
+  sameAs: ['https://www.linkedin.com/company/stratexim/'],
+  logo: 'https://stratexim.com/images/stratexim-logo.png',
+  image: 'https://stratexim.com/og-image.jpg',
+  description: t.jsonld.orgDescription,
+  slogan: t.jsonld.slogan,
+  foundingDate: '2025-03',
+  email: 'info@stratexim.com',
+  telephone: '+420776655106',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Čujkovova 1714/21',
+    addressLocality: 'Ostrava',
+    postalCode: '700 30',
+    addressCountry: 'CZ',
+  },
+  areaServed: 'Europe',
+  knowsAbout: t.jsonld.knowsAbout,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    telephone: '+420776655106',
+    email: 'info@stratexim.com',
+    availableLanguage: t.jsonld.availableLanguage,
+  },
+  founder: [
+    { '@type': 'Person', name: 'Tomáš Boniatti', jobTitle: 'CEO' },
+    { '@type': 'Person', name: 'Myron Mahurskyj', jobTitle: 'CTO' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: t.jsonld.offerCatalogName,
+    itemListElement: t.jsonld.offerCatalog.map((name) => ({ '@type': 'OfferCatalog', name })),
+  },
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: t.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
 ---
 
 <!doctype html>
-<html lang={isCz ? 'cs' : 'en'} data-lang={lang}>
+<html lang={t.htmlLang} data-lang={t.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- DNS Prefetch & Preconnect for third-party domains -->
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-
-    <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <meta name="keywords" content={t.meta.keywords} />
     <meta name="author" content="Stratexim s.r.o." />
-    <meta name="keywords" content={isCz ? keywordsCz : keywordsEn} />
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#111827" />
 
-    <!-- Geo Meta Tags -->
-    <meta name="geo.region" content="CZ" />
-    <meta name="geo.placename" content="Czech Republic" />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalUrl} />
-
-    <!-- Alternate Languages -->
+    <link rel="canonical" href={t.canonical} />
     <link rel="alternate" hreflang="en" href="https://stratexim.com/" />
-    <link rel="alternate" hreflang="cs" href="https://stratexim.com/cz" />
+    <link rel="alternate" hreflang="cs" href="https://stratexim.com/cz/" />
+    <link rel="alternate" hreflang="de" href="https://stratexim.com/de/" />
     <link rel="alternate" hreflang="x-default" href="https://stratexim.com/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:url" content={t.canonical} />
+    <meta property="og:title" content={t.meta.ogTitle} />
+    <meta property="og:description" content={t.meta.ogDescription} />
     <meta property="og:image" content="https://stratexim.com/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Stratexim - Strategic Textile Manufacturing" />
-    <meta property="og:locale" content={isCz ? 'cs_CZ' : 'en_US'} />
-    <meta property="og:locale:alternate" content={isCz ? 'en_US' : 'cs_CZ'} />
+    <meta property="og:image:alt" content={t.meta.ogImageAlt} />
     <meta property="og:site_name" content="Stratexim" />
+    <meta property="og:locale" content={t.meta.ogLocale} />
+    {t.meta.ogLocaleAlt.map((locale) => <meta property="og:locale:alternate" content={locale} />)}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalUrl} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={t.meta.twTitle} />
+    <meta name="twitter:description" content={t.meta.twDescription} />
     <meta name="twitter:image" content="https://stratexim.com/og-image.jpg" />
-    <meta name="twitter:image:alt" content="Stratexim - Strategic Textile Manufacturing" />
 
-    <!-- Theme & Icons -->
-    <meta name="theme-color" content="#111827" />
-    <meta name="msapplication-TileColor" content="#111827" />
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.json" />
 
-    <!-- Fonts -->
+    <!-- Fonts (self-hosted) -->
     <link rel="preload" href="/fonts/sol-pro-cond-black-italic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/raleway-v37-latin-ext_latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/raleway-v37-latin-ext_latin-300.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5234ELT1T2"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-5234ELT1T2');
-    </script>
-
-    <!-- Structured Data: Organization -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Stratexim s.r.o.",
-      "url": "https://stratexim.com",
-      "logo": "https://stratexim.com/favicon.svg",
-      "description": isCz
-        ? "Prémiové taktické textilie pro armádu a policii. Uniformy, taktické vybavení, ochranné tkaniny a CBRN obleky vyráběné v České republice."
-        : "Premium tactical textiles for military and police. Uniforms, tactical gear, protective fabrics, and CBRN suits manufactured in Czech Republic.",
-      "email": "info@stratexim.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "CZ"
-      },
-      "founder": [
-        {
-          "@type": "Person",
-          "name": "Tomáš Boniatti",
-          "jobTitle": isCz ? "Spoluzakladatel" : "Co-Founder",
-          "image": "https://stratexim.com/team/tomas.webp",
-          "description": isCz
-            ? "Expert na výrobu taktických textilií s rozsáhlými zkušenostmi ve vojenských výrobních procesech."
-            : "Expert in tactical textile production with extensive experience in military-grade manufacturing processes."
-        },
-        {
-          "@type": "Person",
-          "name": "Myron Mahurskyj",
-          "jobTitle": isCz ? "Spoluzakladatel" : "Co-Founder",
-          "image": "https://stratexim.com/team/myron.webp",
-          "description": isCz
-            ? "Specialista na technologie ochranných tkanin a zajištění kvality pro obranné aplikace."
-            : "Specialist in protective fabric technologies and quality assurance for defense applications."
-        }
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "sales",
-        "email": "info@stratexim.com",
-        "availableLanguage": ["English", "Czech"]
-      }
-    })} />
-
-    <!-- Structured Data: WebSite (enables sitelinks search box) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Stratexim",
-      "url": "https://stratexim.com",
-      "inLanguage": isCz ? "cs" : "en",
-      "description": description
-    })} />
-
-    <!-- Structured Data: WebPage -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": title,
-      "description": description,
-      "url": canonicalUrl,
-      "inLanguage": isCz ? "cs" : "en",
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "Stratexim",
-        "url": "https://stratexim.com"
-      },
-      "about": {
-        "@type": "Organization",
-        "name": "Stratexim s.r.o."
-      }
-    })} />
-
-    <!-- Structured Data: Products (ItemList) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": isCz ? "Produkty Stratexim" : "Stratexim Products",
-      "description": isCz ? "Taktické textilní produkty vyráběné v České republice" : "Tactical textile products manufactured in Czech Republic",
-      "numberOfItems": 4,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Product",
-            "name": isCz ? "Uniformy a oblečení" : "Uniforms & Clothing",
-            "description": isCz
-              ? "Taktické uniformy, bojové oblečení a ochranné oděvy navržené pro operační excelenci."
-              : "Tactical uniforms, combat clothing and protective garments designed for operational excellence.",
-            "brand": { "@type": "Brand", "name": "Stratexim" },
-            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
-            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "name": isCz ? "Taktické vybavení" : "Tactical Gear",
-            "description": isCz
-              ? "Vesty, nosiče a vybavení navržené pro maximální ochranu a mobilitu."
-              : "Vests, carriers and equipment engineered for maximum protection and mobility.",
-            "brand": { "@type": "Brand", "name": "Stratexim" },
-            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
-            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Product",
-            "name": isCz ? "Ochranné tkaniny" : "Protective Fabrics",
-            "description": isCz
-              ? "Balistické textilie, nehořlavé materiály a pokročilá ochranná řešení."
-              : "Ballistic textiles, flame-resistant materials and advanced protective solutions.",
-            "brand": { "@type": "Brand", "name": "Stratexim" },
-            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
-            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "item": {
-            "@type": "Product",
-            "name": isCz ? "CBRN ochranné obleky" : "CBRN Protective Suits",
-            "description": isCz
-              ? "Specializované systémy ochrany proti chemickým, biologickým, radiologickým a nukleárním hrozbám."
-              : "Specialized chemical, biological, radiological, and nuclear protection systems.",
-            "brand": { "@type": "Brand", "name": "Stratexim" },
-            "manufacturer": { "@type": "Organization", "name": "Stratexim s.r.o." },
-            "countryOfOrigin": { "@type": "Country", "name": "Czech Republic" }
-          }
-        }
-      ]
-    })} />
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
   </head>
   <body>
-    <div class="min-h-screen bg-black text-white">
-      <slot />
-    </div>
+    <slot />
 
     <script>
-      // Language is determined by URL path: /cz = Czech, / = English
-      const lang = document.documentElement.getAttribute('data-lang') || 'en';
-      const basePath = lang === 'cz' ? '/cz' : '/';
-
-      const updateActiveButton = () => {
-        document.querySelectorAll('[data-lang-btn]').forEach(btn => {
-          const isActive = btn.getAttribute('data-lang-btn') === lang;
-          btn.classList.toggle('text-white', isActive);
-          btn.classList.toggle('bg-gradient-to-r', isActive);
-          btn.classList.toggle('from-blue-800/20', isActive);
-          btn.classList.toggle('to-blue-600/20', isActive);
-          btn.classList.toggle('border', isActive);
-          btn.classList.toggle('border-blue-700/30', isActive);
-          btn.classList.toggle('text-white/40', !isActive);
+      // Mobile nav toggle
+      const burger = document.getElementById('navBurger');
+      const links = document.getElementById('navLinks');
+      if (burger && links) {
+        burger.addEventListener('click', () => {
+          links.classList.toggle('open');
+          burger.classList.toggle('open');
         });
-      };
+        links.querySelectorAll('a').forEach((a) =>
+          a.addEventListener('click', () => {
+            links.classList.remove('open');
+            burger.classList.remove('open');
+          })
+        );
+      }
 
-      // Smooth scroll navigation
-      document.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement;
-        const link = target.closest('a[href^="#"]');
-        if (link) {
+      // Reveal-on-scroll
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('.reveal, .reveal-group').forEach((el) => io.observe(el));
+
+      // Parallax glow drift in the hero
+      const glows = document.querySelectorAll<HTMLElement>('.glow');
+      const factors = [0.1, -0.07, 0.05, -0.12, 0.08];
+      let ticking = false;
+      addEventListener(
+        'scroll',
+        () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = scrollY;
+            glows.forEach((g, i) => (g.style.transform = 'translateY(' + y * factors[i] + 'px)'));
+            ticking = false;
+          });
+        },
+        { passive: true }
+      );
+
+      // RFQ form → Formspree (AJAX)
+      const form = document.getElementById('rfqForm') as HTMLFormElement | null;
+      if (form) {
+        const status = document.getElementById('formStatus') as HTMLElement;
+        form.addEventListener('submit', async (e) => {
           e.preventDefault();
-          const id = link.getAttribute('href')?.slice(1);
-          if (id === 'hero' || id === '') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            history.pushState(null, '', basePath);
-          } else {
-            const el = document.getElementById(id!);
-            el?.scrollIntoView({ behavior: 'smooth' });
-            history.pushState(null, '', `${basePath}#${id}`);
+          status.textContent = '…';
+          try {
+            const r = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { Accept: 'application/json' },
+            });
+            if (r.ok) {
+              status.textContent = status.dataset.ok ?? '';
+              status.classList.add('ok');
+              form.reset();
+            } else {
+              status.textContent = status.dataset.err ?? '';
+              status.classList.remove('ok');
+            }
+          } catch (_) {
+            status.textContent = status.dataset.err ?? '';
+            status.classList.remove('ok');
           }
-        }
-      });
+        });
+      }
 
-      // Initialize
-      updateActiveButton();
+      // Current year in the footer
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
     </script>
   </body>
 </html>
 
 <style is:global>
-  @import "../styles/global.css";
+  @import '../styles/global.css';
 </style>

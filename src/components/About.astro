@@ -1,80 +1,32 @@
 ---
-const t = {
-  title: { en: 'About Us', cz: 'O nás' },
-  description: { en: 'Stratexim is a leading manufacturer of high-performance tactical textiles for military and police forces. With over 7 years of combined expertise in the textile industry, we deliver precision, durability, and protection.', cz: 'Stratexim je předním výrobcem vysoce výkonných taktických textilií pro armádu a policejní složky. S více než 7 lety kombinovaných zkušeností v textilním průmyslu dodáváme přesnost, odolnost a ochranu.' },
-  precision: { en: 'Precision', cz: 'Přesnost' },
-  precisionDesc: { en: 'Every stitch, every seam engineered to exact specifications.', cz: 'Každý steh, každý šev navržen podle přesných specifikací.' },
-  durability: { en: 'Durability', cz: 'Odolnost' },
-  durabilityDesc: { en: 'Materials tested under extreme conditions to ensure lasting performance.', cz: 'Materiály testované v extrémních podmínkách pro zajištění dlouhodobé výkonnosti.' },
-  innovation: { en: 'Innovation', cz: 'Inovace' },
-  innovationDesc: { en: 'Cutting-edge textile technologies for superior protection.', cz: 'Nejmodernější textilní technologie pro maximální ochranu.' },
-};
+import type { Translation } from '../i18n/translations';
 
-const pillars = [
-  { title: t.precision, desc: t.precisionDesc, icon: 'target' },
-  { title: t.durability, desc: t.durabilityDesc, icon: 'shield' },
-  { title: t.innovation, desc: t.innovationDesc, icon: 'layers' },
+interface Props {
+  t: Translation;
+}
+
+const { t } = Astro.props;
+
+// Icons are language-independent; order matches t.about.cards.
+const CARD_ICONS = [
+  '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+  '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
 ];
 ---
 
-<section id="about" class="py-32 px-6 relative overflow-clip bg-gradient-to-b from-blue-950/30 via-black to-blue-950/30">
-  <!-- Background gradient orbs -->
-  <div class="section-orb section-orb-indigo w-[400px] h-[400px]" style="top: 10%; left: -10%;"></div>
-  <div class="section-orb section-orb-blue w-[300px] h-[300px]" style="bottom: 20%; right: -5%;"></div>
-
-  <!-- Section divider -->
-  <div class="absolute top-0 left-0 w-full h-px section-divider"></div>
-
-  <div class="container mx-auto max-w-6xl relative z-10">
-    <div class="text-center mb-20">
-      <p class="text-xs tracking-[0.4em] text-white/40 uppercase mb-4">
-        <span class="lang-en">Who We Are</span>
-        <span class="lang-cz">Kdo jsme</span>
-      </p>
-      <h2 class="text-3xl md:text-5xl font-light mb-8 tracking-tight hero-gradient-text">
-        <span class="lang-en">{t.title.en}</span>
-        <span class="lang-cz">{t.title.cz}</span>
-      </h2>
-      <p class="text-white/50 max-w-3xl mx-auto leading-relaxed text-lg">
-        <span class="lang-en">{t.description.en}</span>
-        <span class="lang-cz">{t.description.cz}</span>
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
-      {pillars.map((pillar) => (
-        <div class="group relative p-8 rounded-2xl card-gradient-border">
-          <div class="relative">
-            <div class="icon-glow w-16 h-16 mb-8 rounded-xl flex items-center justify-center">
-              {pillar.icon === 'target' && (
-                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="6"></circle>
-                  <circle cx="12" cy="12" r="2"></circle>
-                </svg>
-              )}
-              {pillar.icon === 'shield' && (
-                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-              )}
-              {pillar.icon === 'layers' && (
-                <svg class="w-7 h-7 text-white/70 group-hover:text-sky-400 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
-              )}
-            </div>
-            <h3 class="text-xl font-semibold mb-4 tracking-wide">
-              <span class="lang-en">{pillar.title.en}</span>
-              <span class="lang-cz">{pillar.title.cz}</span>
-            </h3>
-            <p class="text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-200">
-              <span class="lang-en">{pillar.desc.en}</span>
-              <span class="lang-cz">{pillar.desc.cz}</span>
-            </p>
-          </div>
+<section class="section" id="about">
+  <div class="container">
+    <p class="kicker reveal">{t.about.kicker}</p>
+    <h2 class="section-title gradient-text reveal">{t.about.title}</h2>
+    <p class="section-lead reveal">{t.about.lead}</p>
+    <p class="kicker kicker-sub reveal">{t.about.howKicker}</p>
+    <div class="cards-3 reveal-group">
+      {t.about.cards.map((card, i) => (
+        <div class="card">
+          <div class="icon-box" set:html={CARD_ICONS[i]}></div>
+          <h3>{card.title}</h3>
+          <p>{card.body}</p>
         </div>
       ))}
     </div>

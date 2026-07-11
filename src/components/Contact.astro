@@ -1,66 +1,56 @@
 ---
-const t = {
-  title: { en: 'Contact Us', cz: 'Kontaktujte nás' },
-  subtitle: { en: 'Ready to discuss your tactical textile requirements? Get in touch with our team.', cz: 'Připraveni projednat vaše požadavky na taktické textilie? Kontaktujte náš tým.' },
-};
+import type { Lang, Translation } from '../i18n/translations';
+import { LEGAL_PATH } from '../i18n/translations';
+
+interface Props {
+  t: Translation;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const c = t.contact;
+const f = c.form;
+const privacyHref = LEGAL_PATH[lang];
 ---
 
-<section id="contact" class="py-32 px-6 relative overflow-clip bg-black">
-  <!-- Background gradient orbs -->
-  <div class="section-orb section-orb-indigo w-[400px] h-[400px]" style="bottom: 10%; left: 10%;"></div>
-  <div class="section-orb section-orb-blue w-[350px] h-[350px]" style="top: 20%; right: 5%;"></div>
-
-  <!-- Section divider -->
-  <div class="absolute top-0 left-0 w-full h-px section-divider"></div>
-
-  <!-- Central glow -->
-  <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-3xl"
-    style="background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.08) 0%, rgba(37, 99, 235, 0.04) 50%, transparent 70%)"
-  ></div>
-
-  <div class="container mx-auto max-w-2xl text-center relative z-10">
-    <p class="text-xs tracking-[0.4em] text-white/40 uppercase mb-4">
-      <span class="lang-en">Get In Touch</span>
-      <span class="lang-cz">Spojte se s námi</span>
-    </p>
-    <h2 class="text-3xl md:text-5xl font-light mb-8 tracking-tight hero-gradient-text">
-      <span class="lang-en">{t.title.en}</span>
-      <span class="lang-cz">{t.title.cz}</span>
-    </h2>
-
-    <p class="text-white/50 mb-14 leading-relaxed text-lg">
-      <span class="lang-en">{t.subtitle.en}</span>
-      <span class="lang-cz">{t.subtitle.cz}</span>
-    </p>
-
-    <a
-      href="mailto:info@stratexim.com"
-      class="group relative inline-flex items-center gap-4 px-10 py-5 rounded-full overflow-hidden transition-all duration-500"
-    >
-      <!-- Animated gradient border -->
-      <span class="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-blue-800/50 via-blue-600/50 to-sky-500/50 opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-        <span class="absolute inset-[1px] rounded-full bg-black"></span>
-      </span>
-
-      <!-- Hover fill -->
-      <span class="absolute inset-[1px] rounded-full bg-gradient-to-r from-blue-800/80 via-blue-600/80 to-sky-500/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-
-      <!-- Glow effect -->
-      <span class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r from-blue-800/30 via-blue-600/30 to-sky-500/30"></span>
-
-      <!-- Content -->
-      <svg class="w-5 h-5 text-white/70 group-hover:text-white transition-colors duration-300 relative z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-        <polyline points="22,6 12,13 2,6"></polyline>
-      </svg>
-      <span class="text-sm tracking-[0.15em] text-white/80 group-hover:text-white transition-colors duration-300 relative z-10">
-        info@stratexim.com
-      </span>
-      <svg class="w-4 h-4 text-white/50 group-hover:text-white group-hover:translate-x-2 transition-all duration-300 relative z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"></line>
-        <polyline points="12 5 19 12 12 19"></polyline>
-      </svg>
+<section class="section" id="contact">
+  <div class="container">
+    <p class="kicker reveal">{c.kicker}</p>
+    <h2 class="section-title gradient-text reveal">{c.title}</h2>
+    <p class="section-lead reveal">{c.lead}</p>
+    <form class="rfq-form reveal" id="rfqForm" action="https://formspree.io/f/xbdvwvqk" method="POST">
+      <input type="hidden" name="language" value={f.languageValue} />
+      <div class="form-row">
+        <input type="text" name="company" placeholder={f.companyPh} aria-label={f.companyAria} required />
+        <input type="email" name="email" placeholder={f.emailPh} aria-label={f.emailAria} required />
+      </div>
+      <div class="form-row">
+        <select name="segment" aria-label={f.segmentAria} required>
+          <option value="" disabled selected>{f.segmentPh}</option>
+          {f.segmentOptions.map((opt) => <option>{opt}</option>)}
+        </select>
+        <input type="text" name="volume" placeholder={f.volumePh} aria-label={f.volumeAria} />
+      </div>
+      <textarea name="message" rows="5" placeholder={f.messagePh} aria-label={f.messageAria} required></textarea>
+      <p class="form-note">{f.noteBefore}<a href={privacyHref}>{f.noteLink}</a>{f.noteAfter}</p>
+      <button type="submit" class="btn-pill btn-cta gradient-border">{f.submit}</button>
+      <p class="form-status" id="formStatus" data-ok={f.statusOk} data-err={f.statusErr}></p>
+    </form>
+    <p class="contact-or reveal">{c.or}</p>
+    <a href="mailto:info@stratexim.com" class="btn-pill btn-mail gradient-border reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      <span>info@stratexim.com</span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <a href="tel:+420776655106" class="btn-pill btn-mail gradient-border reveal btn-tel">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>+420 776 655 106</span>
+    </a>
+    <p class="socials-intro reveal">{c.followIntro}</p>
+    <a href="https://www.linkedin.com/company/stratexim/" class="btn-pill btn-mail gradient-border reveal btn-linkedin" target="_blank" rel="noopener" aria-label={c.linkedinAria}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      <span>{c.followCta}</span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
   </div>
 </section>

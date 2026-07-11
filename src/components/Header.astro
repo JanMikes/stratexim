@@ -1,60 +1,37 @@
 ---
-const navItems = [
-  { id: 'about', en: 'About', cz: 'O nás' },
-  { id: 'products', en: 'Products', cz: 'Produkty' },
-  { id: 'team', en: 'Team', cz: 'Tým' },
-  { id: 'contact', en: 'Contact', cz: 'Kontakt' },
-];
+import type { Lang, Translation } from '../i18n/translations';
+import { HOME_PATH } from '../i18n/translations';
+
+interface Props {
+  t: Translation;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const langs: Lang[] = ['en', 'cz', 'de'];
+const langLabels: Record<Lang, string> = { en: 'EN', cz: 'CZ', de: 'DE' };
 ---
 
-<header
-  id="header"
-  class="fixed top-0 left-0 right-0 z-50 bg-black/95 transition-[top] duration-300"
-  role="banner"
->
-  <div class="header-border absolute bottom-0 left-0 w-full h-px section-divider opacity-100"></div>
-
-  <div class="container mx-auto px-6 py-5 flex items-center justify-between">
-    <a
-      href="#hero"
-      class="text-base font-medium tracking-[0.35em] hero-gradient-text hover:opacity-80 transition-opacity"
-      aria-label="Stratexim - Back to top"
-    >
-      STRATEXIM
-    </a>
-
-    <nav class="hidden md:flex items-center gap-10" role="navigation" aria-label="Main navigation">
-      {navItems.map((item) => (
-        <a
-          href={`#${item.id}`}
-          class="text-sm text-white/50 hover:text-white transition-colors duration-300 tracking-wider animated-underline"
-        >
-          <span class="lang-en">{item.en}</span>
-          <span class="lang-cz">{item.cz}</span>
-        </a>
-      ))}
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">S T R A T E X I M</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">{t.nav.about}</a>
+      <a href="#products">{t.nav.products}</a>
+      <a href="#team">{t.nav.team}</a>
+      <a href="#faq">{t.nav.faq}</a>
+      <a href="#contact">{t.nav.contact}</a>
     </nav>
-
-    <div class="flex items-center gap-3 text-sm" role="group" aria-label="Language selection">
-      <a
-        href="/"
-        data-lang-btn="en"
-        class="transition-all duration-300 px-3 py-1.5 rounded-md text-white/40 hover:text-white/70"
-        aria-label="Switch to English"
-        lang="en"
-      >
-        EN
-      </a>
-      <span class="text-white/20" aria-hidden="true">/</span>
-      <a
-        href="/cz"
-        data-lang-btn="cz"
-        class="transition-all duration-300 px-3 py-1.5 rounded-md text-white/40 hover:text-white/70"
-        aria-label="Přepnout na češtinu"
-        lang="cs"
-      >
-        CZ
-      </a>
+    <div class="nav-right">
+      <div class="nav-lang">
+        {langs.map((l, i) => (
+          <Fragment>
+            {i > 0 && <span class="lang-sep">/</span>}
+            <a href={l === lang ? '#' : HOME_PATH[l]} class:list={['lang', { active: l === lang }]}>{langLabels[l]}</a>
+          </Fragment>
+        ))}
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label={t.nav.menuAria}><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>

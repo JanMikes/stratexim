@@ -1,6 +1,7 @@
+# All crawlers welcome, including AI/LLM bots
+# (GPTBot, ClaudeBot, Google-Extended, PerplexityBot, CCBot, Bytespider, …)
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /node_modules/
 
 Sitemap: https://stratexim.com/sitemap.xml
+# LLM-friendly site summary: https://stratexim.com/llms.txt

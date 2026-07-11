@@ -1,0 +1,21 @@
+---
+import type { Translation } from '../i18n/translations';
+
+interface Props {
+  t: Translation;
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section" id="faq">
+  <div class="container">
+    <p class="kicker reveal">{t.faq.kicker}</p>
+    <h2 class="section-title gradient-text reveal">{t.faq.title}</h2>
+    <div class="faq reveal">
+      {t.faq.items.map((item) => (
+        <div class="faq-item"><h3>{item.q}</h3><p>{item.a}</p></div>
+      ))}
+    </div>
+  </div>
+</section>

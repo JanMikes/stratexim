@@ -1,0 +1,39 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { translations } from '../i18n/translations';
+
+const lang = 'en' as const;
+const t = translations[lang];
+---
+
+<LegalLayout t={t} lang={lang}>
+  <p>This page explains how we handle the personal data you provide through this website — in practice, the details you enter into our inquiry (request-for-quote) form, or send us by e-mail or phone.</p>
+
+  <h2>Who is responsible for your data</h2>
+  <p>The controller is <strong>Bonimport Global s.r.o.</strong>, which operates the STRATEXIM brand.<br />
+  Company ID (IČO): 23035650 · VAT: CZ23035650<br />
+  Registered office: Čujkovova 1714/21, 700 30 Ostrava, Czech Republic<br />
+  E-mail: info@stratexim.com · Phone: +420 776 655 106</p>
+
+  <h2>What data we process and why</h2>
+  <p>When you use our inquiry form, we process the data you enter: your name or company, e-mail address, the selected segment, estimated volume and your message. If you contact us by e-mail or phone, we process the data you share there. We use this data solely to respond to your inquiry and to communicate with you about a possible cooperation.</p>
+
+  <h2>Legal basis</h2>
+  <p>We process this data to take steps at your request prior to entering into a contract (Article 6(1)(b) GDPR) and on the basis of our legitimate interest in responding to business inquiries and communicating with prospective partners (Article 6(1)(f) GDPR).</p>
+
+  <h2>Who else may process the data</h2>
+  <p>Our inquiry form is technically handled by Formspree, Inc. (USA), which forwards submissions to our e-mail. Any transfer of data outside the EU is covered by appropriate safeguards under the GDPR (such as standard contractual clauses). The website itself is hosted as static files and sets no tracking cookies.</p>
+
+  <h2>How long we keep it</h2>
+  <p>We keep your inquiry only for as long as needed to handle it and for the related communication, and delete it afterwards — unless a contractual or legal reason to keep it arises.</p>
+
+  <h2>Cookies and tracking</h2>
+  <p>This website does not use analytics, advertising or other tracking cookies, and does not profile visitors.</p>
+
+  <h2>Your rights</h2>
+  <p>Under the GDPR you have the right to access your data, to have it corrected or erased, to restrict or object to its processing, and to data portability. You also have the right to lodge a complaint with the Czech supervisory authority, the Office for Personal Data Protection (Úřad pro ochranu osobních údajů, <a href="https://www.uoou.cz" target="_blank" rel="noopener">www.uoou.cz</a>).</p>
+  <p>To exercise any of these rights, contact us at <a href="mailto:info@stratexim.com">info@stratexim.com</a>.</p>
+
+  <h2>Changes</h2>
+  <p>We may update this Privacy Policy. The current version is always available on this page.</p>
+</LegalLayout>

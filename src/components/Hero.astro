@@ -1,84 +1,32 @@
 ---
-const t = {
-  tagline: { en: 'PRECISION • DURABILITY • INNOVATION', cz: 'PŘESNOST • ODOLNOST • INOVACE' },
-  title: { en: 'Strategic Textile Manufacturing in the Heart of Europe', cz: 'Strategická textilní výroba v srdci Evropy' },
-  subtitle: { en: 'Premium tactical textiles engineered for military and law enforcement. Built to protect those who protect us.', cz: 'Prémiové taktické textilie navržené pro armádu a bezpečnostní složky. Vyrobeno pro ochranu těch, kteří chrání nás.' },
-  cta: { en: 'CONTACT US', cz: 'KONTAKTUJTE NÁS' },
-};
+import type { Translation } from '../i18n/translations';
+
+interface Props {
+  t: Translation;
+}
+
+const { t } = Astro.props;
 ---
 
-<section id="hero" class="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-clip" aria-label="Hero">
-  <!-- Aurora background effect -->
-  <div class="aurora" style="top: -50%; left: -50%;"></div>
-
-  <!-- Animated gradient orbs -->
-  <div class="gradient-orb gradient-orb-1" style="top: 10%; left: 15%;"></div>
-  <div class="gradient-orb gradient-orb-2" style="top: 60%; right: 10%;"></div>
-  <div class="gradient-orb gradient-orb-3" style="bottom: 20%; left: 5%;"></div>
-
-  <!-- Accent orbs -->
-  <div class="accent-orb accent-orb-1"></div>
-  <div class="accent-orb accent-orb-2"></div>
-
-  <!-- Subtle grid pattern -->
-  <div class="absolute inset-0 grid-pattern opacity-50 pointer-events-none"></div>
-
-  <!-- Central radial glow -->
-  <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] rounded-full blur-3xl pointer-events-none"
-    style="background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.08) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 70%)"
-  ></div>
-
-  <!-- Top gradient fade -->
-  <div class="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none"></div>
-
-  <div class="text-center max-w-4xl mx-auto relative z-10">
-    <h1 class="text-5xl md:text-7xl lg:text-8xl mb-8 hero-gradient-text" style="font-family: 'Sol Pro Cond', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.06em;">
-      <span style="display: inline-block; border-bottom: 1px solid currentColor;">STRATEXIM</span>
-    </h1>
-
-    <p class="text-xs md:text-sm tracking-[0.4em] text-white/40 mb-10 uppercase">
-      <span class="lang-en">{t.tagline.en}</span>
-      <span class="lang-cz">{t.tagline.cz}</span>
-    </p>
-
-    <div class="w-32 h-px gradient-line mx-auto mb-10"></div>
-
-    <h2 class="text-2xl md:text-3xl lg:text-4xl font-light mb-8 tracking-tight leading-relaxed">
-      <span class="lang-en">{t.title.en}</span>
-      <span class="lang-cz">{t.title.cz}</span>
-    </h2>
-
-    <p class="text-white/50 text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-      <span class="lang-en">{t.subtitle.en}</span>
-      <span class="lang-cz">{t.subtitle.cz}</span>
-    </p>
-
-    <a
-      href="#contact"
-      class="group relative inline-block px-10 py-4 bg-transparent overflow-hidden transition-all duration-500 gradient-border-animated rounded-full"
-    >
-      <span class="absolute inset-0 bg-gradient-to-r from-blue-800/80 via-blue-600/80 to-sky-500/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full"></span>
-      <span class="relative text-sm tracking-[0.25em] group-hover:text-white transition-colors duration-500">
-        <span class="lang-en">{t.cta.en}</span>
-        <span class="lang-cz">{t.cta.cz}</span>
-      </span>
-    </a>
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+    <div class="glow glow-4"></div>
+    <div class="glow glow-5"></div>
   </div>
-
-  <a
-    href="#about"
-    class="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/40 hover:text-blue-400 transition-all duration-500 animate-float group"
-    aria-label="Scroll to About section"
-  >
-    <div class="relative">
-      <div class="absolute inset-0 bg-blue-600/20 rounded-full blur-xl scale-0 group-hover:scale-150 transition-transform duration-500"></div>
-      <svg class="w-8 h-8 relative" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </div>
+  <div class="hero-inner">
+    <div class="hero-logo reveal">STRATEXIM</div>
+    <div class="hero-underline reveal" aria-hidden="true"></div>
+    <p class="hero-motto reveal">{t.hero.motto}</p>
+    <div class="divider reveal" aria-hidden="true"></div>
+    <h1 class="hero-title gradient-text reveal">{t.hero.title}</h1>
+    <p class="hero-sub reveal">{t.hero.sub}</p>
+    <a href="#contact" class="btn-pill btn-cta gradient-border reveal">{t.hero.cta}</a>
+  </div>
+  <a href="#about" class="hero-scroll" aria-label={t.hero.scrollAria}>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
   </a>
-
-  <!-- Bottom gradient fade -->
-  <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
 </section>
