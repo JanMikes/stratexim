@@ -7,5 +7,5 @@ Allow: /
 User-agent: SeznamBot
 Allow: /
 
-Sitemap: https://stratexim.com/sitemap-index.xml
+Sitemap: https://stratexim.com/sitemap.xml
 # LLM-friendly site summary: https://stratexim.com/llms.txt
