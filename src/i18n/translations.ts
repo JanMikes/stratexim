@@ -32,18 +32,16 @@ export const translations = {
     htmlLang: 'en',
     canonical: 'https://stratexim.com/',
     meta: {
-      title: 'Stratexim | All-in-One Textile Solution — From Idea to Finished Product',
+      title: 'Custom & Technical Textile Manufacturing in the EU | Stratexim',
       description:
-        'We bring textile ideas to reality. Technical drawings, materials, production, quality control and logistics — all in one textile office in the middle of Europe. Defence & Mil-Pol, industry, medical, fashion, home & hotels.',
-      keywords:
-        'custom textile manufacturing, textile design office, tactical gear, ballistic vests, CBRN suits, workwear, protective fabrics, technical textiles, hospital textiles, hotel textiles, custom clothing line, merch production, Czech Republic, Europe',
-      ogTitle: 'Stratexim | All-in-One Textile Solution',
+        'We design and manufacture custom textiles in the EU — from technical drawing to serial production. Defence, industry, medical, hotels. No fixed minimum.',
+      ogTitle: 'Stratexim | Custom Textile Manufacturing in the EU',
       ogDescription:
         'We bring textile ideas to reality. From an idea to a finished product in a few weeks — design, materials, production, quality control and logistics in one textile office in the middle of Europe.',
       ogImageAlt: 'Stratexim — all-in-one textile solution',
       ogLocale: 'en_US',
       ogLocaleAlt: ['cs_CZ', 'de_DE'],
-      twTitle: 'Stratexim | All-in-One Textile Solution',
+      twTitle: 'Stratexim | Custom Textile Manufacturing in the EU',
       twDescription:
         'From an idea to a finished product — design, materials, production, quality control and logistics in one textile office in the middle of Europe.',
     },
@@ -64,7 +62,7 @@ export const translations = {
     },
     about: {
       kicker: 'WHO WE ARE',
-      title: 'About Us',
+      title: 'A Textile Design Office in the EU',
       lead: 'Our team comes from the defence textile sector, where every parameter matters — and that precision has stayed with us. Today we design and produce textiles for everyone who needs them done properly. All made in Europe, with 20+ years of combined experience behind us.',
       howKicker: 'HOW WE WORK',
       cards: [
@@ -84,7 +82,7 @@ export const translations = {
     },
     products: {
       kicker: 'WHAT WE MAKE',
-      title: 'Our Products',
+      title: 'Textiles We Design & Manufacture',
       lead: "From ballistic vests to hotel bedding — if it's textile, we can design it and make it. Five segments we serve, plus the special-use fabrics behind them.",
       segments: [
         {
@@ -169,7 +167,7 @@ export const translations = {
     },
     contact: {
       kicker: 'GET IN TOUCH',
-      title: 'Contact Us',
+      title: 'Request a Quote',
       lead: "Show us your product — or just tell us your idea. We'll come back with materials, timeline and price. Get your quotation now.",
       form: {
         languageValue: 'EN',
@@ -225,18 +223,16 @@ export const translations = {
     htmlLang: 'cs',
     canonical: 'https://stratexim.com/cz/',
     meta: {
-      title: 'Stratexim | Komplexní textilní řešení — od nápadu k hotovému produktu',
+      title: 'Zakázkové šití technických textilií a oděvů | Stratexim',
       description:
-        'Proměňujeme textilní nápady ve skutečnost. Technické nákresy, materiály, výroba, kontrola kvality a logistika — vše v jedné textilní kanceláři uprostřed Evropy. Obrana, průmysl, zdravotnictví, móda, domácnost i hotely.',
-      keywords:
-        'zakázková výroba textilu, textilní vývojová kancelář, taktické vybavení, neprůstřelné vesty, CBRN obleky, pracovní oděvy, ochranné tkaniny, technické textilie, nemocniční textil, hotelový textil, vlastní řada oblečení, výroba merche, Česká republika, Evropa',
-      ogTitle: 'Stratexim | Komplexní textilní řešení',
+        'Navrhujeme a šijeme technické textilie a oděvy na míru — od technického nákresu po sériovou výrobu v ČR. Obrana, průmysl, zdravotnictví, hotely.',
+      ogTitle: 'Stratexim | Zakázkové šití technických textilií',
       ogDescription:
         'Proměňujeme textilní nápady ve skutečnost. Od nápadu k hotovému produktu během pár týdnů — návrh, materiály, výroba, kontrola kvality a logistika v jedné textilní kanceláři uprostřed Evropy.',
       ogImageAlt: 'Stratexim — komplexní textilní řešení',
       ogLocale: 'cs_CZ',
       ogLocaleAlt: ['en_US', 'de_DE'],
-      twTitle: 'Stratexim | Komplexní textilní řešení',
+      twTitle: 'Stratexim | Zakázkové šití technických textilií',
       twDescription:
         'Od nápadu k hotovému produktu — návrh, materiály, výroba, kontrola kvality a logistika v jedné textilní kanceláři uprostřed Evropy.',
     },
@@ -257,7 +253,7 @@ export const translations = {
     },
     about: {
       kicker: 'KDO JSME',
-      title: 'O nás',
+      title: 'Textilní vývojová kancelář v ČR',
       lead: 'Náš tým pochází z obranného textilního průmyslu, kde záleží na každém parametru — a tahle preciznost nám zůstala. Dnes navrhujeme a vyrábíme textilie pro každého, kdo je potřebuje udělat pořádně. Vše vyrobeno v Evropě, s více než 20 lety zkušeností za sebou.',
       howKicker: 'JAK PRACUJEME',
       cards: [
@@ -277,7 +273,7 @@ export const translations = {
     },
     products: {
       kicker: 'CO VYRÁBÍME',
-      title: 'Naše produkty',
+      title: 'Textilie, které navrhujeme a šijeme',
       lead: 'Od neprůstřelných vest po hotelové povlečení — pokud je to textil, umíme ho navrhnout i vyrobit. Pět segmentů, pro které pracujeme, plus speciální tkaniny v jejich základu.',
       segments: [
         {
@@ -362,7 +358,7 @@ export const translations = {
     },
     contact: {
       kicker: 'OZVĚTE SE NÁM',
-      title: 'Kontaktujte nás',
+      title: 'Nezávazná poptávka',
       lead: 'Ukažte nám svůj produkt — nebo nám jen řekněte svůj nápad. Vrátíme se vám s materiály, termínem a cenou. Napište si o nabídku ještě dnes.',
       form: {
         languageValue: 'CZ',
@@ -418,20 +414,18 @@ export const translations = {
     htmlLang: 'de',
     canonical: 'https://stratexim.com/de/',
     meta: {
-      title: 'Stratexim | Textile Gesamtlösungen – von der Idee bis zum fertigen Produkt',
+      title: 'Lohnkonfektion & technische Textilien aus der EU | Stratexim',
       description:
-        'Wir verwandeln Textilideen in fertige Produkte. Technische Entwicklung, Materialien, Produktion, Qualitätskontrolle und Logistik — alles in einem Textilbüro mitten in Europa. Verteidigung, Industrie, Medizin, Fashion, Heim & Hotel.',
-      keywords:
-        'Textilproduktion nach Maß, Textil-Designbüro, taktische Ausrüstung, beschusshemmende Westen, CBRN-Schutzanzüge, Arbeitskleidung, Schutzgewebe, technische Textilien, Krankenhaustextilien, Hoteltextilien, eigene Modelinie, Merch-Produktion, Tschechien, Europa',
-      ogTitle: 'Stratexim | Textile Gesamtlösungen',
+        'Lohnkonfektion und Lohnnäherei aus Tschechien — von der technischen Zeichnung bis zur Serienproduktion. Schutz-, Industrie-, Medizin- und Hoteltextilien.',
+      ogTitle: 'Stratexim | Lohnkonfektion & technische Textilien aus der EU',
       ogDescription:
-        'Wir machen Textilideen zur Realität. Von der Idee zum fertigen Produkt in wenigen Wochen — Design, Materialien, Produktion, Qualitätskontrolle und Logistik in einem Textilbüro mitten in Europa.',
-      ogImageAlt: 'Stratexim — Textile Gesamtlösungen',
+        'Lohnkonfektion aus Tschechien — von der Idee zum fertigen Produkt in wenigen Wochen. Entwicklung, Materialien, Produktion, Qualitätskontrolle und Logistik aus einer Hand.',
+      ogImageAlt: 'Stratexim — Lohnkonfektion und technische Textilien',
       ogLocale: 'de_DE',
       ogLocaleAlt: ['en_US', 'cs_CZ'],
-      twTitle: 'Stratexim | Textile Gesamtlösungen',
+      twTitle: 'Stratexim | Lohnkonfektion & technische Textilien',
       twDescription:
-        'Von der Idee zum fertigen Produkt — Design, Materialien, Produktion, Qualitätskontrolle und Logistik in einem Textilbüro mitten in Europa.',
+        'Lohnkonfektion aus Tschechien — Entwicklung, Materialien, Produktion, Qualitätskontrolle und Logistik in einem Textilbüro mitten in Europa.',
     },
     nav: {
       about: 'Über uns',
@@ -450,7 +444,7 @@ export const translations = {
     },
     about: {
       kicker: 'WER WIR SIND',
-      title: 'Über uns',
+      title: 'Textil-Entwicklungsbüro in der EU',
       lead: 'Unser Team stammt aus der technischen Textilbranche für den Verteidigungssektor, in der jeder Parameter zählt – und genau diese Präzision zeichnet uns bis heute aus. Heute entwickeln und produzieren wir Textilien für alle, die höchste Qualität erwarten. Alle Produkte werden in Europa gefertigt – mit mehr als 20 Jahren Erfahrung.',
       howKicker: 'WIE WIR ARBEITEN',
       cards: [
@@ -470,7 +464,7 @@ export const translations = {
     },
     products: {
       kicker: 'WAS WIR FERTIGEN',
-      title: 'Unsere Produkte',
+      title: 'Textilien aus unserer Lohnkonfektion',
       lead: 'Von beschusshemmenden Westen bis zur Hotelbettwäsche – wenn es um Textilien geht, entwickeln und fertigen wir sie. Fünf Branchen, für die wir arbeiten – und die Spezialgewebe, auf denen sie basieren.',
       segments: [
         {
@@ -555,7 +549,7 @@ export const translations = {
     },
     contact: {
       kicker: 'MELDEN SIE SICH',
-      title: 'Kontaktieren Sie uns',
+      title: 'Angebot anfordern',
       lead: 'Zeigen Sie uns Ihr Produkt — oder erzählen Sie uns einfach Ihre Idee. Sie erhalten von uns einen Materialvorschlag, einen Zeitplan und ein individuelles Angebot. Fordern Sie noch heute ein unverbindliches Angebot an.',
       form: {
         languageValue: 'DE',

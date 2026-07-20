@@ -1,4 +1,6 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import type { Translation } from '../i18n/translations';
 
 interface Props {
@@ -6,6 +8,18 @@ interface Props {
 }
 
 const { t } = Astro.props;
+
+// Product photos are optimised at build time (WebP + srcset) by astro:assets.
+const productImages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/products/*.jpg',
+  { eager: true }
+);
+
+// Each photo renders in a ~280px-wide 4:3 frame. Rendering at that size with a 2x
+// density variant keeps both the `src` fallback and the `srcset` small — passing the
+// full 1200px original would ship ~175kB per photo for a 280px slot.
+const PHOTO_W = 280;
+const PHOTO_H = 210;
 
 // Segment icons + product photo filenames are language-independent.
 // Order matches t.products.segments.
@@ -50,15 +64,17 @@ const SEG_META = [
             <h3>{seg.name}</h3>
           </div>
           <div class="seg-photos">
-            {seg.photos.map((photo, j) => (
-              <figure>
-                <div class="frame">
-                  <div class="ph" aria-hidden="true"><span>PHOTO<br />{SEG_META[i].photos[j]}</span></div>
-                  <img src={`/images/products/${SEG_META[i].photos[j]}`} alt={photo.alt} loading="lazy" onerror="this.style.display='none'" />
-                </div>
-                <figcaption><strong>{photo.title}</strong><span>{photo.desc}</span></figcaption>
-              </figure>
-            ))}
+            {seg.photos.map((photo, j) => {
+              const img = productImages[`/src/assets/images/products/${SEG_META[i].photos[j]}`].default;
+              return (
+                <figure>
+                  <div class="frame">
+                    <Image src={img} alt={photo.alt} width={PHOTO_W} height={PHOTO_H} densities={[1, 2]} loading="lazy" />
+                  </div>
+                  <figcaption><strong>{photo.title}</strong><span>{photo.desc}</span></figcaption>
+                </figure>
+              );
+            })}
           </div>
           <p>{seg.blurb}</p>
           <ul class="chips">{seg.chips.map((chip) => <li>{chip}</li>)}</ul>

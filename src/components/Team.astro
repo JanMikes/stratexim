@@ -1,5 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import type { Translation } from '../i18n/translations';
+import tomas from '../assets/images/team/tomas.jpg';
+import myron from '../assets/images/team/myron.jpg';
 
 interface Props {
   t: Translation;
@@ -9,8 +12,8 @@ const { t } = Astro.props;
 
 // Names, roles, photos and alt text are language-independent; bios come from t.
 const MEMBERS = [
-  { photo: 'tomas.jpg', name: 'Tomáš Boniatti', role: 'CEO', alt: 'Tomáš Boniatti - CEO, Stratexim s.r.o.' },
-  { photo: 'myron.jpg', name: 'Myron Mahurskyj', role: 'CTO', alt: 'Myron Mahurskyj - CTO, Stratexim s.r.o.' },
+  { photo: tomas, name: 'Tomáš Boniatti', role: 'CEO', alt: 'Tomáš Boniatti — CEO, Stratexim s.r.o.' },
+  { photo: myron, name: 'Myron Mahurskyj', role: 'CTO', alt: 'Myron Mahurskyj — CTO, Stratexim s.r.o.' },
 ];
 ---
 
@@ -23,7 +26,7 @@ const MEMBERS = [
       {MEMBERS.map((member, i) => (
         <div class="member">
           <div class="member-photo">
-            <img src={`/images/team/${member.photo}`} alt={member.alt} loading="lazy" />
+            <Image src={member.photo} alt={member.alt} width={170} height={170} densities={[1, 2]} loading="lazy" />
           </div>
           <h3>{member.name}</h3>
           <p class="member-role">{member.role}</p>

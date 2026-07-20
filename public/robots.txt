@@ -3,5 +3,9 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stratexim.com/sitemap.xml
+# Seznam is ~12% of Czech search (higher on desktop, where B2B research happens).
+User-agent: SeznamBot
+Allow: /
+
+Sitemap: https://stratexim.com/sitemap-index.xml
 # LLM-friendly site summary: https://stratexim.com/llms.txt
